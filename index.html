@@ -3,12 +3,34 @@
 
 <head>
     <title>COVID Chile</title>
-    <link rel="stylesheet" href="main.css" type="text/css">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css" type="text/css" />
+    <script src="node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+
 </head>
 
-
 <body>
+    <div class="title-container">
+        <h1 class="maintitle">COVID-19 en Chile</h1>
+    </div>
+
+    <div class="container" id="totales-div">
+        <canvas id="totales-chart"></canvas>
+    </div>
+
+    <form id="diarios-form">
+        <input id="submit-button" type="submit" value="Casos Diarios" />
+    </form>
+
+    <form id="totales-form">
+        <input id="submit-button" type="submit" value="Casos Totales" />
+    </form>
+    
+    <!--div id="chartDiv" style="width: 100%; height: 400px;"></div-->
 
 </body>
+
 <script src="index.js"></script>
+
 </html>
