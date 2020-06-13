@@ -519,7 +519,7 @@ function closeSlideMenu() {
 }
 
 /*  MAPA  */
-
+/*
 const chileChart = new JSC.chart("chartDiv", {
 
     type: "map",
@@ -544,4 +544,46 @@ const chileChart = new JSC.chart("chartDiv", {
             }
         }
     },
-})
+})*/
+
+google.charts.load('current', {
+    'packages': ['geochart'],
+    'mapsApiKey': 'YOUR_KEY'
+});
+
+google.charts.setOnLoadCallback(drawRegionsMap);
+
+function drawRegionsMap() {
+    var data = google.visualization.arrayToDataTable([
+        ['Country', 'Popularity'],
+        ['CL-AP', 799],
+        ['CL-TA', 200],
+        ['CL-AN', 123],
+        ['CL-AT', 654],
+        ['CL-CO', 799],
+        ['CL-AR', 735],
+        ['CL-VS', 234],
+        ['CL-LI', 932],
+        ['CL-ML', 244],
+        ['CL-BI', 342],
+        ['CL-LL', 512],
+        ['CL-AI', 712],
+        ['CL-MA', 90],
+        ['CL-RM', 129],
+        ['CL-LR', 123],
+        ['CL-ÑB', 421],
+
+    ]);
+
+    var options = {
+        region: 'CL',
+        resolution: 'provinces',
+        colorAxis: { colors: ['#f0c975', '#de1717'] },
+        backgroundColor: '#c3dafe',
+        datalessRegionColor: '#c9c9c9',
+        defaultColor: '#f5f5f5',
+    };
+
+    var chart = new google.visualization.GeoChart(document.getElementById('regions-div'));
+    chart.draw(data, options);
+}
