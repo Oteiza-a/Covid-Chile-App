@@ -1,23 +1,32 @@
 let datesList = [];
 let confirmedCasesList = [];
 let newCasesList = [];
+let totalDeathsList = [];
+let dailyDeathsList = [];
 
 const totalsContainer = document.getElementById('totales-div');
 const dailyContainer = document.getElementById('diarios-div');
+
 const diariosForm = document.getElementById('diarios-form');
 const totalesForm = document.getElementById('totales-form');
 
+const muertesTotalesForm = document.getElementById('muertes-totales-form');
+const muertesDiariasForm = document.getElementById('muertes-diarias-form');
+
+
 let myChart = document.getElementById('totales-chart').getContext("2d");
+let h = document.getElementById('totales-div').clientHeight;
 
 var yellowRedGradient =
-    myChart.createLinearGradient(0, 0, 0, 600);
-    yellowRedGradient.addColorStop(0, 'rgba(255, 0, 0, 1)');
-    yellowRedGradient.addColorStop(1, 'rgba(255, 185, 0, 0.9)');
+    myChart.createLinearGradient(0, -100, 0, h + h);
+yellowRedGradient.addColorStop(0, 'rgba(255, 0, 0, 1)');
+yellowRedGradient.addColorStop(1, 'rgba(255, 185, 0, 1)');
 
 var yellowPurpleGradient =
-    myChart.createLinearGradient(0, 0, 0, 690);
-    yellowPurpleGradient.addColorStop(0, 'rgba(162, 0, 244, 1)');
-    yellowPurpleGradient.addColorStop(1, 'rgba(41, 109, 255, 0.9)');
+    myChart.createLinearGradient(0, -100, 0, h + h + h + h);
+yellowPurpleGradient.addColorStop(0, 'rgba(162, 0, 244, 1)');
+yellowPurpleGradient.addColorStop(1, 'rgba(124, 220, 255, 1)');
+
 
 window.onload = () => {
 
@@ -41,12 +50,26 @@ const loadData = () => {
                 return { day: day, data: data[day] };
             })
 
+            let formattedDay = '';
+            let counter = 0;
+
+            preparedList.forEach(element => {
+
+                formattedDay = element.day[3] + element.day[4] + '/' + element.day[0] + element.day[1] + '/' + element.day.slice(6);
+
+                preparedList[counter].day = formattedDay;
+                counter++;
+            })
+
             loadChart(preparedList);
         })
+        .catch(err => {
+            location.reload();
+        })
+
 }
 
 const loadChart = (allDataArr) => {
-
 
     getDates(allDataArr)
         .then(resDaysList => {
@@ -63,10 +86,20 @@ const loadChart = (allDataArr) => {
     getDailyNewCases(allDataArr)
         .then(resNewCases => {
             newCasesList = resNewCases;
-            paintTotalCasesChart();
         })
 
+    getDeaths(allDataArr)
+        .then(resDeathsList => {
+            totalDeathsList = resDeathsList;
+        })
 
+    getDailyDeaths(allDataArr)
+        .then(resDailyDeaths => {
+            dailyDeathsList = resDailyDeaths;
+
+            paintTotalCasesChart();
+            showParagraph();
+        })
 
 }
 
@@ -134,6 +167,50 @@ function getDailyNewCases(allDataArr) {
     })
 }
 
+function getDeaths(allDataArr) {
+    return new Promise((resolve, reject) => {
+
+        let deathsList = [];
+
+        deathsList = allDataArr.forEach((obj) => {
+            deathsList.push(obj.data.deaths);
+
+            if (obj.day == allDataArr[allDataArr.length - 1].day) {
+
+                return resolve(deathsList);
+            }
+        })
+    })
+}
+
+function getDailyDeaths(allDataArr) {
+
+    return new Promise((resolve, reject) => {
+
+        let dailyDeathsList = [];
+        let flag = true;
+        let previousDeaths = 0;
+
+        deathsList = allDataArr.forEach((obj) => {
+
+            if (flag) {
+                flag = false;
+                previousDeaths = obj.data.deaths;
+                dailyDeathsList.push(obj.data.deaths);
+
+            } else {
+                dailyDeathsList.push(obj.data.deaths - previousDeaths);
+                previousDeaths = obj.data.deaths;
+            }
+
+            if (obj.day == allDataArr[allDataArr.length - 1].day) {
+
+                return resolve(dailyDeathsList);
+            }
+        })
+    })
+}
+
 const paintTotalCasesChart = () => {
 
     //Global Options:
@@ -149,7 +226,6 @@ const paintTotalCasesChart = () => {
             datasets: [{
                 label: 'Casos confirmados totales',
                 data: confirmedCasesList, //confirmedCasesList
-
                 backgroundColor: yellowRedGradient,
                 /*backgroundColor: [
                     'green',
@@ -168,7 +244,7 @@ const paintTotalCasesChart = () => {
         options: {
             title: {
                 display: true,
-                text: 'Casos de contagio totales en Chile',
+                text: 'Casos de Contagio Totales Confirmados',
                 fontSize: 25,
             },
             legend: {
@@ -202,13 +278,30 @@ const paintTotalCasesChart = () => {
 
             }
         },
-
-    });
+    })
 
     diariosForm.onsubmit = (event) => {
 
         event.preventDefault();
         updateADiarios(totalesChart);
+    }
+
+    totalesForm.onsubmit = (event) => {
+
+        event.preventDefault();
+        updateATotales(totalesChart);
+    }
+
+    muertesTotalesForm.onsubmit = (event) => {
+
+        event.preventDefault();
+        updateAMuertesTotales(totalesChart);
+    }
+
+    muertesDiariasForm.onsubmit = (event) => {
+
+        event.preventDefault();
+        updateAMuertesDiarias(totalesChart);
     }
 
 
@@ -229,7 +322,7 @@ const paintDailyCasesChart = () => {
             datasets: [{
                 label: 'Casos confirmados diarios',
                 data: newCasesList,
-                backgroundColor: yellowRedGradient,
+                backgroundColor: yellowPurpleGradient,
                 /*backgroundColor: [
                     'green',
                     'red',
@@ -291,6 +384,17 @@ const paintDailyCasesChart = () => {
     }
 }
 
+const showParagraph = () => {
+    const parr = document.getElementById('info-parr');
+
+    let lastDate = datesList[datesList.length - 1];
+    let lastNewCases = newCasesList[newCasesList.length - 1];
+    let lastTotalCases = confirmedCasesList[confirmedCasesList.length - 1];
+    let lastNewDeaths = dailyDeathsList[dailyDeathsList.length - 1];
+    let lastTotalDeaths = totalDeathsList[totalDeathsList.length - 1];
+    parr.innerHTML = `<p>El último reporte de COVID-19 en Chile fue el ${lastDate}: hubieron ${lastNewCases} nuevos contagios y ${lastNewDeaths} fallecidos.<br/>Llevando a un total histórico de ${lastTotalCases} contagios y ${lastTotalDeaths} fallecidos en Chile.</p>`;
+}
+
 function updateADiarios(chart) {
 
     chart.options.title.text = 'Casos Diarios Confirmados';
@@ -316,17 +420,11 @@ function updateADiarios(chart) {
     });
 
     chart.update();
-
-    totalesForm.onsubmit = (event) => {
-
-        event.preventDefault();
-        updateATotales(chart);
-    }
 }
 
 function updateATotales(chart) {
 
-    chart.options.title.text = 'Casos Totales Confirmados';
+    chart.options.title.text = 'Casos de Contagio Totales Confirmados';
 
     chart.data.datasets.forEach((dataset) => {
         chart.data.datasets = [{
@@ -348,14 +446,102 @@ function updateATotales(chart) {
         }];
     });
 
-    /*thisChartData.forEach(x => {
-        dataset.data.pop();
-    })*/
+    chart.update();
+}
+
+function updateAMuertesTotales(chart) {
+
+    chart.options.title.text = 'Fallecidos Totales Confirmados';
+
+    chart.data.datasets.forEach((dataset) => {
+        chart.data.datasets = [{
+            label: 'Fallecidos totales',
+            data: totalDeathsList, //confirmedCasesList
+
+            backgroundColor: 'red',
+            /*backgroundColor: [
+                'green',
+                'red',
+                'yellow',
+                'rgba(250,200,100, 1)',
+            ],*/
+            borderWidth: 0,
+            borderColor: '#777',
+            hoverBorderWidth: '1',
+            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+        }];
+    });
 
     chart.update();
 }
 
-/*JSC.chart("chartDiv", {
+function updateAMuertesDiarias(chart) {
+
+    chart.options.title.text = 'Fallecidos Por Día Confirmados';
+
+    chart.data.datasets.forEach((dataset) => {
+        chart.data.datasets = [{
+            label: 'Fallecidos Por Día',
+            data: dailyDeathsList, //confirmedCasesList
+
+            backgroundColor: 'red',
+            /*backgroundColor: [
+                'green',
+                'red',
+                'yellow',
+                'rgba(250,200,100, 1)',
+            ],*/
+            borderWidth: 0,
+            borderColor: '#777',
+            hoverBorderWidth: '1',
+            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+        }];
+    });
+
+    chart.update();
+}
+
+
+
+/*  SIDEBAR  */
+
+function openSlideMenu() {
+    document.getElementById('menu').style.width = "300px";
+    //document.getElementById('content').style.marginLeft = "250px";
+}
+
+function closeSlideMenu() {
+    document.getElementById('menu').style.width = "0";
+    document.getElementById('content').style.marginLeft = "0";
+
+}
+
+/*  MAPA  */
+
+const chileChart = new JSC.chart("chartDiv", {
+
     type: "map",
-    series: [{ map: "cl" }]
-  })*/
+    mapping_base_layers: "CL",
+    series: [
+        {
+            defaultPoint_color: "crimson",
+            points: [
+                {
+                    map: "CL.RM",
+                    events_click: function () {
+                        alert("Button clicked");
+                    }
+                },
+                { map: "CL.TA" }]
+        }
+    ],
+    toolbar_items: {
+        "Click Me": {
+            events_click: function () {
+                alert("Button clicked");
+            }
+        }
+    },
+})
