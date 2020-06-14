@@ -551,7 +551,7 @@ google.charts.load('current', {
     'mapsApiKey': 'YOUR_KEY'
 });
 
-google.charts.setOnLoadCallback(drawRegionsMap);
+/*google.charts.setOnLoadCallback(drawRegionsMap);
 
 function drawRegionsMap() {
     var data = google.visualization.arrayToDataTable([
@@ -586,4 +586,91 @@ function drawRegionsMap() {
 
     var chart = new google.visualization.GeoChart(document.getElementById('regions-div'));
     chart.draw(data, options);
+}*/
+
+google.charts.load('visualization', '1', {
+    'packages': ['geochart'],
+    'mapsApiKey': 'YOUR_KEY'
+});
+
+google.charts.setOnLoadCallback(drawRegionsMap);
+
+function drawRegionsMap() {
+    var data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Popularity');
+
+    data.addRows([
+        [{f:'Arica y Parinacota', v: 'CL-AP'}, 12],
+        [{f:'Tarapacá', v: 'CL-TA'}, 32],
+        [{f:'Antofagasta', v: 'CL-AN'}, 11],
+        [{f:'Atacama', v: 'CL-AT'}, 32],
+        [{f:'Coquimbo', v: 'CL-CO'}, 74],
+        [{f:'La Araucanía', v: 'CL-AR'}, 12],
+        [{f:'Valparaíso', v: 'CL-VS'}, 4],
+        [{f:"Libertador General Bernardo O'Higgins", v: 'CL-LI'}, 32],
+        [{f:'Maule', v: 'CL-ML'}, 34],
+        [{f:'Biobío', v: 'CL-BI'}, 13],
+        [{f:'Los Lagos', v: 'CL-LL'}, 2],
+        [{f:'Aisén del General Carlos Ibañez del Campo', v: 'CL-AI'}, 67],
+        [{f:'Magallanes', v: 'CL-MA'}, 18],
+        [{f:'Región Metropolitana', v: 'CL-RM'}, 2],
+        [{f:'Los Ríos', v: 'CL-LR'}, 57],
+    ]);
+
+    var options = {
+
+        'width': 'auto',
+
+        region: 'CL',
+        resolution: 'provinces',
+
+        colorAxis: { colors: ['#f0c975', '#de1717'] },
+        backgroundColor: '#c3dafe',
+        datalessRegionColor: '#c9c9c9',
+        defaultColor: '#f5f5f5',
+
+        enableRegionInteractivity: true,
+
+    };
+
+    var mapContainer = document.getElementById('regions-div');
+    var chart = new google.visualization.GeoChart(mapContainer);
+
+    function myClickHandler(){
+        var selection = chart.getSelection();
+        var message = '';
+
+        for (var i = 0; i < selection.length; i++) {
+
+            var item = selection[i];
+
+            console.log(item.row);
+
+            if (item.row != null && item.column != null) {
+                message += '{row:' + item.row + ',column:' + item.column + '}';
+
+            //siempre entra aquí
+            } else if (item.row != null) {
+                message += 'row: '+ data.hg[item.row].c[0].f;
+
+            } else if (item.column != null) {
+                message += '{column:' + item.column + '}';
+            }
+        }
+        if (message == '') {
+            message = 'nothing';
+        }
+        alert('You selected ' + message);
+    }
+
+    google.visualization.events.addListener(chart, 'select', myClickHandler);
+    chart.draw(data, options);
+
+
 }
+
+$(window).resize(function(){
+    drawRegionsMap();
+  });
