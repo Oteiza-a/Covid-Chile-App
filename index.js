@@ -4,6 +4,7 @@ let newCasesList = [];
 let totalDeathsList = [];
 let dailyDeathsList = [];
 
+let listaDataRegiones = [];
 const totalsContainer = document.getElementById('totales-div');
 const dailyContainer = document.getElementById('diarios-div');
 
@@ -31,6 +32,7 @@ yellowPurpleGradient.addColorStop(1, 'rgba(124, 220, 255, 1)');
 window.onload = () => {
 
     loadData();
+    loadSmallChartsData();
 }
 
 const loadData = () => {
@@ -46,9 +48,14 @@ const loadData = () => {
         .then(res => res.json())
         .then(data => {
 
+            //console.log(data);
+
             preparedList = Object.keys(data).map((day) => {
+                //console.log(day)
                 return { day: day, data: data[day] };
             })
+
+            //console.log(preparedList)
 
             let formattedDay = '';
             let counter = 0;
@@ -68,6 +75,8 @@ const loadData = () => {
         })
 
 }
+
+
 
 const loadChart = (allDataArr) => {
 
@@ -502,9 +511,6 @@ function updateAMuertesDiarias(chart) {
 
     chart.update();
 }
-
-
-
 /*  SIDEBAR  */
 
 function openSlideMenu() {
@@ -519,158 +525,214 @@ function closeSlideMenu() {
 }
 
 /*  MAPA  */
-/*
-const chileChart = new JSC.chart("chartDiv", {
 
-    type: "map",
-    mapping_base_layers: "CL",
-    series: [
-        {
-            defaultPoint_color: "crimson",
-            points: [
-                {
-                    map: "CL.RM",
-                    events_click: function () {
-                        alert("Button clicked");
+
+const loadSmallChartsData = () => {
+
+    //OBTENIENDO DATOS REGIONALES
+    fetch('https://chile-coronapi1.p.rapidapi.com/v3/historical/regions', {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-host': 'chile-coronapi1.p.rapidapi.com',
+            'x-rapidapi-key': '94a928ddd1msh94a43eaf68e37cfp11c6aejsn31acec61285f',
+            'useQueryString': true,
+        },
+    })
+        .then(res => res.json())
+        .then(data => {
+
+            preparedData = Object.keys(data).map((regionNumber) => {
+
+                contagiosList = Object.keys(data[regionNumber].regionData).map((x) => {
+
+                    return data[regionNumber].regionData[x].confirmed;
+                })
+
+                muertesList = Object.keys(data[regionNumber].regionData).map((x) => {
+
+                    let deaths = data[regionNumber].regionData[x].deaths;
+
+                    if(deaths == undefined){
+                        return 0;
+                    }else{
+                        return deaths;
                     }
-                },
-                { map: "CL.TA" }]
-        }
-    ],
-    toolbar_items: {
-        "Click Me": {
-            events_click: function () {
-                alert("Button clicked");
+                })
+
+                return { region: data[regionNumber].region, data: { contagios: contagiosList, muertes: muertesList}};
+            })
+
+            //REASIGNANDO CONTAGIOS Y MUERTES DE BIOBÍO: SUMANDOLE LAS DE ÑUBLE
+            let biobioContagios = [];
+            let biobioMuertes = [];
+            
+            ctdDiasPasados = preparedData[0].data.contagios.length;
+
+            for(let i = 0; i < ctdDiasPasados; i++){
+
+                let contagiosDelDia;
+                let muertesDelDia;
+
+
+                contagiosDelDia = preparedData[7].data.contagios[i] + preparedData[15].data.contagios[i];
+                biobioContagios.push(contagiosDelDia);
+
+                muertesDelDia = preparedData[7].data.muertes[i] + preparedData[15].data.muertes[i];
+                biobioMuertes.push(muertesDelDia);
+
             }
-        }
-    },
-})*/
 
-google.charts.load('current', {
-    'packages': ['geochart'],
-    'mapsApiKey': 'YOUR_KEY'
-});
+            preparedData[7].data.contagios = biobioContagios;
+            preparedData[7].data.muertes = biobioMuertes;
 
-/*google.charts.setOnLoadCallback(drawRegionsMap);
+            
+            //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
+            console.log(preparedData);
 
-function drawRegionsMap() {
-    var data = google.visualization.arrayToDataTable([
-        ['Country', 'Popularity'],
-        ['CL-AP', 799],
-        ['CL-TA', 200],
-        ['CL-AN', 123],
-        ['CL-AT', 654],
-        ['CL-CO', 799],
-        ['CL-AR', 735],
-        ['CL-VS', 234],
-        ['CL-LI', 932],
-        ['CL-ML', 244],
-        ['CL-BI', 342],
-        ['CL-LL', 512],
-        ['CL-AI', 712],
-        ['CL-MA', 90],
-        ['CL-RM', 129],
-        ['CL-LR', 123],
-        ['CL-ÑB', 421],
-
-    ]);
-
-    var options = {
-        region: 'CL',
-        resolution: 'provinces',
-        colorAxis: { colors: ['#f0c975', '#de1717'] },
-        backgroundColor: '#c3dafe',
-        datalessRegionColor: '#c9c9c9',
-        defaultColor: '#f5f5f5',
-    };
-
-    var chart = new google.visualization.GeoChart(document.getElementById('regions-div'));
-    chart.draw(data, options);
-}*/
-
-google.charts.load('visualization', '1', {
-    'packages': ['geochart'],
-    'mapsApiKey': 'YOUR_KEY'
-});
-
-google.charts.setOnLoadCallback(drawRegionsMap);
-
-function drawRegionsMap() {
-    var data = new google.visualization.DataTable();
-
-    data.addColumn('string', 'Country');
-    data.addColumn('number', 'Popularity');
-
-    data.addRows([
-        [{f:'Arica y Parinacota', v: 'CL-AP'}, 12],
-        [{f:'Tarapacá', v: 'CL-TA'}, 32],
-        [{f:'Antofagasta', v: 'CL-AN'}, 11],
-        [{f:'Atacama', v: 'CL-AT'}, 32],
-        [{f:'Coquimbo', v: 'CL-CO'}, 74],
-        [{f:'La Araucanía', v: 'CL-AR'}, 12],
-        [{f:'Valparaíso', v: 'CL-VS'}, 4],
-        [{f:"Libertador General Bernardo O'Higgins", v: 'CL-LI'}, 32],
-        [{f:'Maule', v: 'CL-ML'}, 34],
-        [{f:'Biobío', v: 'CL-BI'}, 13],
-        [{f:'Los Lagos', v: 'CL-LL'}, 2],
-        [{f:'Aisén del General Carlos Ibañez del Campo', v: 'CL-AI'}, 67],
-        [{f:'Magallanes', v: 'CL-MA'}, 18],
-        [{f:'Región Metropolitana', v: 'CL-RM'}, 2],
-        [{f:'Los Ríos', v: 'CL-LR'}, 57],
-    ]);
-
-    var options = {
-
-        'width': 'auto',
-
-        region: 'CL',
-        resolution: 'provinces',
-
-        colorAxis: { colors: ['#f0c975', '#de1717'] },
-        backgroundColor: '#c3dafe',
-        datalessRegionColor: '#c9c9c9',
-        defaultColor: '#f5f5f5',
-
-        enableRegionInteractivity: true,
-
-    };
-
-    var mapContainer = document.getElementById('regions-div');
-    var chart = new google.visualization.GeoChart(mapContainer);
-
-    function myClickHandler(){
-        var selection = chart.getSelection();
-        var message = '';
-
-        for (var i = 0; i < selection.length; i++) {
-
-            var item = selection[i];
-
-            console.log(item.row);
-
-            if (item.row != null && item.column != null) {
-                message += '{row:' + item.row + ',column:' + item.column + '}';
-
-            //siempre entra aquí
-            } else if (item.row != null) {
-                message += 'row: '+ data.hg[item.row].c[0].f;
-
-            } else if (item.column != null) {
-                message += '{column:' + item.column + '}';
-            }
-        }
-        if (message == '') {
-            message = 'nothing';
-        }
-        alert('You selected ' + message);
-    }
-
-    google.visualization.events.addListener(chart, 'select', myClickHandler);
-    chart.draw(data, options);
-
-
+            loadMap(preparedData);
+            //LLAMAR A loadSmallCharts(preparedData);
+        })
 }
 
-$(window).resize(function(){
-    drawRegionsMap();
-  });
+function loadMap(regionsData){
+
+    let lastContagios = [];
+
+    let ordenDeRegiones = [
+    'Arica y Parinacota',
+    'Tarapacá',
+    'Antofagasta',
+    'Atacama',
+    'Coquimbo',
+    'Araucanía',
+    'Valparaíso',
+    "O’Higgins",
+    'Maule',
+    'Biobío',
+    'Los Lagos',
+    'Aysén',
+    'Magallanes',
+    'Metropolitana',
+    'Los Ríos',
+    ]
+
+
+    ordenDeRegiones.forEach((nombreRegion) => {
+
+        regionsData.forEach((regionInfo) => {
+
+            regionActual = regionInfo.region;
+
+            if(nombreRegion == regionActual){
+
+                lastContagios.push(regionInfo.data.contagios[regionInfo.data.contagios.length-1])
+            }
+        })
+    })
+
+    var windowWidth;
+    var windowHeight;
+    
+    var divWidth;
+    var divHeight;
+    google.charts.load('visualization', '1', {
+        'packages': ['geochart'],
+        'mapsApiKey': 'YOUR_KEY',
+    });
+    
+    google.charts.setOnLoadCallback(drawRegionsMap);
+    
+    function drawRegionsMap() {
+    
+        windowWidth = $(window).width();
+        windowHeight = $(window).height();
+    
+        windowWidth = windowWidth / 1.7;
+        windowHeight = windowHeight / 3;
+        var data = new google.visualization.DataTable();
+    
+        data.addColumn('string', 'Region');
+        data.addColumn('number', 'Contagios Totales');
+    
+        data.addRows([
+            [{ f: 'Arica y Parinacota', v: 'CL-AP' }, lastContagios[0]],
+            [{ f: 'Tarapacá', v: 'CL-TA' }, lastContagios[1]],
+            [{ f: 'Antofagasta', v: 'CL-AN' }, lastContagios[2]],
+            [{ f: 'Atacama', v: 'CL-AT' }, lastContagios[3]],
+            [{ f: 'Coquimbo', v: 'CL-CO' }, lastContagios[4]],
+            [{ f: 'Araucanía', v: 'CL-AR' }, lastContagios[5]],
+            [{ f: 'Valparaíso', v: 'CL-VS' }, lastContagios[6]],
+            [{ f: "O'Higgins", v: 'CL-LI' }, lastContagios[7]],
+            [{ f: 'Maule', v: 'CL-ML' }, lastContagios[8]],
+            [{ f: 'Biobío', v: 'CL-BI' }, lastContagios[9]],
+            [{ f: 'Los Lagos', v: 'CL-LL' }, lastContagios[10]],
+            [{ f: 'Aysén', v: 'CL-AI' }, lastContagios[11]],
+            [{ f: 'Magallanes', v: 'CL-MA' }, lastContagios[12]],
+            [{ f: 'Metropolitana', v: 'CL-RM' }, lastContagios[13]],
+            [{ f: 'Los Ríos', v: 'CL-LR' }, lastContagios[14]],
+        ]);
+    
+        var options = {
+    
+            width: windowWidth,
+    
+            region: 'CL',
+            resolution: 'provinces',
+    
+            colorAxis: { colors: ['#f0c975', '#f57200','#f57200', '#f57200', '#f57200','#f57200', '#f57200', '#f57200', '#f57200','#f57200', '#f57200','#f57200','#de1717'] },
+            backgroundColor: '#c3dafe',
+            datalessRegionColor: '#c9c9c9',
+            defaultColor: '#f5f5f5',
+    
+            'tooltip.textStyle': {
+                color: '#000',
+                fontName: 'Lato',
+                fontSize: 30,
+                bold: false,
+                italic: false,
+            }
+        };
+    
+        var mapContainer = document.getElementById('regions-div');
+        var chart = new google.visualization.GeoChart(mapContainer);
+    
+        function myClickHandler() {
+            var selection = chart.getSelection();
+            var message = '';
+    
+            for (var i = 0; i < selection.length; i++) {
+    
+                var item = selection[i];
+    
+                if (item.row != null && item.column != null) {
+                    message += '{row:' + item.row + ',column:' + item.column + '}';
+    
+                    //siempre entra aquí
+                } else if (item.row != null) {
+                    message += 'row: ' + data.hg[item.row].c[0].f;
+    
+                } else if (item.column != null) {
+                    message += '{column:' + item.column + '}';
+                }
+            }
+            if (message == '') {
+                message = 'nothing';
+            }
+            alert('You selected ' + message);
+        }
+    
+        google.visualization.events.addListener(chart, 'select', myClickHandler);
+        chart.draw(data, options);
+    }
+    
+    $(window).resize(function () {
+        drawRegionsMap();
+    });
+    
+}
+
+
+
+const loadSmallCharts = () => {
+
+}
