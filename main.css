@@ -68,7 +68,7 @@ body {
 }
 
 #mid-section {
-    padding: 2%;
+    padding: 1%;
     background-color: white;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
@@ -180,12 +180,14 @@ body {
 .map-title{
     
     font-size: 24px;
+    color: #444;
     margin: 10px 0px;
 
 }
 
 .map-text{
     margin: 10px 0px;
+    color: #444;
 }
 
         /*  SMALL CHARTS  */
