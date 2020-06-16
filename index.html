@@ -46,6 +46,9 @@
                 <input id="submit-button" type="submit" value="Fallecidos Por Día" />
             </form>
 
+            <form id="mapa-form" class="forms">
+                <input id="submit-button" type="submit" value="Mapa Por Regiones" />
+            </form>
         </div>
 
         <div class="title-container">
@@ -56,17 +59,24 @@
             <canvas id="totales-chart"></canvas>
         </div>
 
-        <div class="map-container" id="map-container">
+        <div class="map-container" id="map-container" style="display: none;">
             <div id="regions-div" class="chart"></div>
+
+            <div class="map-text-box">
+                <p class="map-title">Contagios Por Región</p>
+                <p class="map-text">Haz click en alguna región para ver su información.</p>
+            </div>
+            
+
         </div>
 
-        <div class="small-charts">
-            <div id="small-chart-container" style="margin-right: 7px;">
-                <canvas id="small-chart"></canvas>
+        <div id="small-charts" class="small-charts" style="display: none;">
+            <div id="small-chart-container"  class="chart-left">
+                <canvas id="small-chart-contagios"></canvas>
             </div>
     
-            <div id="small-chart-container" style="margin-left: 7px;">
-                <canvas id="small-chart"></canvas>
+            <div id="small-chart-container" class="chart-right">
+                <canvas id="small-chart-muertes" ></canvas>
             </div>
         </div>
 
@@ -74,10 +84,7 @@
             <p id="info-parr"></p>
         </div>
 
-
-
     </div>
-
 </body>
 
 <script src="index.js"></script>

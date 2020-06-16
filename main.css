@@ -45,7 +45,7 @@ body {
     background-color: steelblue;
 }
 
-#muertes-diarias-form {
+#mapa-form {
     border-bottom: 1px solid #ccc;
 }
 
@@ -161,23 +161,65 @@ body {
     max-height: 900px;
 }
 
+.map-text-box{
+    position: absolute;
+
+    left: 26%;
+    bottom: 30%;
+
+    width: 20%;
+
+    color: black;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+
+    padding: 3%;
+
+}
+
+.map-title{
+    
+    font-size: 24px;
+    margin: 10px 0px;
+
+}
+
+.map-text{
+    margin: 10px 0px;
+}
+
         /*  SMALL CHARTS  */
 
 .small-charts{
-    width: fit-content;
+    width: 85%;
+
     margin-left: auto;
     margin-right: auto;
+
+    margin-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 #small-chart-container{
 
     text-align: center;
     background-color: white;
-    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.3);
-
     display: inline-block;
 
-    width: 30%;
+    width: 47.5%;
 
-    margin: 3% auto;
+    padding: 1%;
+    margin: 0px 0px;
+
+}
+
+.chart-left{
+    border-radius: 8px 0px 0px 8px;
+    box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chart-right{
+    border-radius: 0pc 8px 8px 0px ;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
 }

@@ -4,7 +4,8 @@ let newCasesList = [];
 let totalDeathsList = [];
 let dailyDeathsList = [];
 
-let listaDataRegiones = [];
+let dataRegionesGlobal;
+
 const totalsContainer = document.getElementById('totales-div');
 const dailyContainer = document.getElementById('diarios-div');
 
@@ -14,6 +15,9 @@ const totalesForm = document.getElementById('totales-form');
 const muertesTotalesForm = document.getElementById('muertes-totales-form');
 const muertesDiariasForm = document.getElementById('muertes-diarias-form');
 
+const bigChartContainer = document.getElementById('totales-div');
+const mapContainer = document.getElementById('map-container');
+const smallChartsContainer = document.getElementById('small-charts');
 
 let myChart = document.getElementById('totales-chart').getContext("2d");
 let h = document.getElementById('totales-div').clientHeight;
@@ -75,8 +79,6 @@ const loadData = () => {
         })
 
 }
-
-
 
 const loadChart = (allDataArr) => {
 
@@ -228,6 +230,7 @@ const paintTotalCasesChart = () => {
     Chart.defaults.global.defaultFontColor = '#333';
 
     let totalesChart = new Chart(myChart, {
+
         type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea, bubble, area, scatter
         data: {
 
@@ -236,12 +239,6 @@ const paintTotalCasesChart = () => {
                 label: 'Casos confirmados totales',
                 data: confirmedCasesList, //confirmedCasesList
                 backgroundColor: yellowRedGradient,
-                /*backgroundColor: [
-                    'green',
-                    'red',
-                    'yellow',
-                    'rgba(250,200,100, 1)',
-                ],*/
                 borderWidth: 0,
                 borderColor: '#777',
                 hoverBorderWidth: '1',
@@ -292,28 +289,30 @@ const paintTotalCasesChart = () => {
     diariosForm.onsubmit = (event) => {
 
         event.preventDefault();
+        toggleToChart();
         updateADiarios(totalesChart);
     }
 
     totalesForm.onsubmit = (event) => {
 
         event.preventDefault();
+        toggleToChart();
         updateATotales(totalesChart);
     }
 
     muertesTotalesForm.onsubmit = (event) => {
 
         event.preventDefault();
+        toggleToChart();
         updateAMuertesTotales(totalesChart);
     }
 
     muertesDiariasForm.onsubmit = (event) => {
 
         event.preventDefault();
+        toggleToChart();
         updateAMuertesDiarias(totalesChart);
     }
-
-
 }
 
 const paintDailyCasesChart = () => {
@@ -408,25 +407,23 @@ function updateADiarios(chart) {
 
     chart.options.title.text = 'Casos Diarios Confirmados';
 
-    chart.data.datasets.forEach((dataset) => {
-        chart.data.datasets = [{
-            label: 'Casos diarios confirmados',
-            data: newCasesList, //confirmedCasesList
+    chart.data.datasets = [{
+        label: 'Casos diarios confirmados',
+        data: newCasesList, //confirmedCasesList
 
-            backgroundColor: yellowPurpleGradient,
-            /*backgroundColor: [
-                'green',
-                'red',
-                'yellow',
-                'rgba(250,200,100, 1)',
-            ],*/
-            borderWidth: 0,
-            borderColor: '#777',
-            hoverBorderWidth: '1',
-            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+        backgroundColor: yellowPurpleGradient,
+        /*backgroundColor: [
+            'green',
+            'red',
+            'yellow',
+            'rgba(250,200,100, 1)',
+        ],*/
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
 
-        }];
-    });
+    }];
 
     chart.update();
 }
@@ -435,25 +432,23 @@ function updateATotales(chart) {
 
     chart.options.title.text = 'Casos de Contagio Totales Confirmados';
 
-    chart.data.datasets.forEach((dataset) => {
-        chart.data.datasets = [{
-            label: 'Casos confirmados totales',
-            data: confirmedCasesList, //confirmedCasesList
+    chart.data.datasets = [{
+        label: 'Casos confirmados totales',
+        data: confirmedCasesList, //confirmedCasesList
 
-            backgroundColor: yellowRedGradient,
-            /*backgroundColor: [
-                'green',
-                'red',
-                'yellow',
-                'rgba(250,200,100, 1)',
-            ],*/
-            borderWidth: 0,
-            borderColor: '#777',
-            hoverBorderWidth: '1',
-            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+        backgroundColor: yellowRedGradient,
+        /*backgroundColor: [
+            'green',
+            'red',
+            'yellow',
+            'rgba(250,200,100, 1)',
+        ],*/
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
 
-        }];
-    });
+    }];
 
     chart.update();
 }
@@ -462,25 +457,23 @@ function updateAMuertesTotales(chart) {
 
     chart.options.title.text = 'Fallecidos Totales Confirmados';
 
-    chart.data.datasets.forEach((dataset) => {
-        chart.data.datasets = [{
-            label: 'Fallecidos totales',
-            data: totalDeathsList, //confirmedCasesList
+    chart.data.datasets = [{
+        label: 'Fallecidos totales',
+        data: totalDeathsList, //confirmedCasesList
 
-            backgroundColor: 'red',
-            /*backgroundColor: [
-                'green',
-                'red',
-                'yellow',
-                'rgba(250,200,100, 1)',
-            ],*/
-            borderWidth: 0,
-            borderColor: '#777',
-            hoverBorderWidth: '1',
-            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+        backgroundColor: 'red',
+        /*backgroundColor: [
+            'green',
+            'red',
+            'yellow',
+            'rgba(250,200,100, 1)',
+        ],*/
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
 
-        }];
-    });
+    }];
 
     chart.update();
 }
@@ -489,25 +482,23 @@ function updateAMuertesDiarias(chart) {
 
     chart.options.title.text = 'Fallecidos Por Día Confirmados';
 
-    chart.data.datasets.forEach((dataset) => {
-        chart.data.datasets = [{
-            label: 'Fallecidos Por Día',
-            data: dailyDeathsList, //confirmedCasesList
+    chart.data.datasets = [{
+        label: 'Fallecidos Por Día',
+        data: dailyDeathsList, //confirmedCasesList
 
-            backgroundColor: 'red',
-            /*backgroundColor: [
-                'green',
-                'red',
-                'yellow',
-                'rgba(250,200,100, 1)',
-            ],*/
-            borderWidth: 0,
-            borderColor: '#777',
-            hoverBorderWidth: '1',
-            hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+        backgroundColor: 'red',
+        /*backgroundColor: [
+            'green',
+            'red',
+            'yellow',
+            'rgba(250,200,100, 1)',
+        ],*/
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
 
-        }];
-    });
+    }];
 
     chart.update();
 }
@@ -525,7 +516,6 @@ function closeSlideMenu() {
 }
 
 /*  MAPA  */
-
 
 const loadSmallChartsData = () => {
 
@@ -552,27 +542,26 @@ const loadSmallChartsData = () => {
 
                     let deaths = data[regionNumber].regionData[x].deaths;
 
-                    if(deaths == undefined){
+                    if (deaths == undefined) {
                         return 0;
-                    }else{
+                    } else {
                         return deaths;
                     }
                 })
 
-                return { region: data[regionNumber].region, data: { contagios: contagiosList, muertes: muertesList}};
+                return { region: data[regionNumber].region, data: { contagios: contagiosList, muertes: muertesList } };
             })
 
             //REASIGNANDO CONTAGIOS Y MUERTES DE BIOBÍO: SUMANDOLE LAS DE ÑUBLE
             let biobioContagios = [];
             let biobioMuertes = [];
-            
+
             ctdDiasPasados = preparedData[0].data.contagios.length;
 
-            for(let i = 0; i < ctdDiasPasados; i++){
+            for (let i = 0; i < ctdDiasPasados; i++) {
 
                 let contagiosDelDia;
                 let muertesDelDia;
-
 
                 contagiosDelDia = preparedData[7].data.contagios[i] + preparedData[15].data.contagios[i];
                 biobioContagios.push(contagiosDelDia);
@@ -585,75 +574,215 @@ const loadSmallChartsData = () => {
             preparedData[7].data.contagios = biobioContagios;
             preparedData[7].data.muertes = biobioMuertes;
 
-            
-            //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
-            console.log(preparedData);
+            dataRegionesGlobal = preparedData;
 
-            loadMap(preparedData);
-            //LLAMAR A loadSmallCharts(preparedData);
+            //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
+            console.log(dataRegionesGlobal);
+            loadMap();
+            paintSmallCharts();
         })
 }
 
-function loadMap(regionsData){
+const paintSmallCharts = () => {
+
+    let contagiosChart = document.getElementById('small-chart-contagios').getContext("2d");
+
+    let selectedRegion = 'Arica y Parinacota';
+
+    let contagiosParaChart = [];
+    let muertesParaChart = [];
+
+    dataRegionesGlobal.forEach(regionData => {
+
+        if (regionData.region == selectedRegion) {
+
+            contagiosParaChart = regionData.data.contagios;
+            muertesParaChart = regionData.data.muertes;
+        }
+    });
+
+    let smallCasesChart = new Chart(contagiosChart, {
+
+        type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea, bubble, area, scatter
+        data: {
+
+            labels: datesList, //dateslist
+            datasets: [{
+                label: 'Casos confirmados en la región',
+                data: contagiosParaChart, //confirmedCasesList
+                backgroundColor: yellowRedGradient,
+                /*backgroundColor: [
+                    'green',
+                    'red',
+                    'yellow',
+                    'rgba(250,200,100, 1)',
+                ],*/
+                borderWidth: 0,
+                borderColor: '#777',
+                hoverBorderWidth: '1',
+                hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+            }],
+
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Contagios totales en Arica y Parinacota',
+                fontSize: 19,
+            },
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    fontColor: 'black',
+                },
+            },
+            layout: {
+                padding: {
+                    top: 0,
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            tooltips: {
+                enabled: true,
+            },
+            animation: {
+                duration: 5000,
+                easing: 'easeOutQuart',
+
+            }
+        },
+    })
+
+    let muertesChart = document.getElementById('small-chart-muertes').getContext("2d");
+
+    let smallDeathsChart = new Chart(muertesChart, {
+
+        type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea, bubble, area, scatter
+        data: {
+
+            labels: datesList, //dateslist
+            datasets: [{
+                label: 'Fallecidos confirmados en la región',
+                data: muertesParaChart, //confirmedCasesList
+                backgroundColor: 'red',
+                borderWidth: 0,
+                borderColor: '#777',
+                hoverBorderWidth: '1',
+                hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+            }],
+
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Fallecidos Totales en Arica y Parinacota',
+                fontSize: 19,
+            },
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    fontColor: 'black',
+                },
+            },
+            layout: {
+                padding: {
+                    top: 0,
+                    bottom: 0,
+                    right: 0,
+                    left: 0,
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            tooltips: {
+                enabled: true,
+            },
+            animation: {
+                duration: 5000,
+                easing: 'easeOutQuart',
+
+            }
+        },
+    })
+
+    loadMap(smallCasesChart, smallDeathsChart);
+}
+
+function loadMap(casesChart, deathsChart) {
 
     let lastContagios = [];
 
     let ordenDeRegiones = [
-    'Arica y Parinacota',
-    'Tarapacá',
-    'Antofagasta',
-    'Atacama',
-    'Coquimbo',
-    'Araucanía',
-    'Valparaíso',
-    "O’Higgins",
-    'Maule',
-    'Biobío',
-    'Los Lagos',
-    'Aysén',
-    'Magallanes',
-    'Metropolitana',
-    'Los Ríos',
+        'Arica y Parinacota',
+        'Tarapacá',
+        'Antofagasta',
+        'Atacama',
+        'Coquimbo',
+        'Araucanía',
+        'Valparaíso',
+        "O’Higgins",
+        'Maule',
+        'Biobío',
+        'Los Lagos',
+        'Aysén',
+        'Magallanes',
+        'Metropolitana',
+        'Los Ríos',
     ]
-
 
     ordenDeRegiones.forEach((nombreRegion) => {
 
-        regionsData.forEach((regionInfo) => {
+        dataRegionesGlobal.forEach((regionInfo) => {
 
             regionActual = regionInfo.region;
 
-            if(nombreRegion == regionActual){
+            if (nombreRegion == regionActual) {
 
-                lastContagios.push(regionInfo.data.contagios[regionInfo.data.contagios.length-1])
+                lastContagios.push(regionInfo.data.contagios[regionInfo.data.contagios.length - 1])
             }
         })
     })
 
     var windowWidth;
     var windowHeight;
-    
-    var divWidth;
-    var divHeight;
+
     google.charts.load('visualization', '1', {
         'packages': ['geochart'],
         'mapsApiKey': 'YOUR_KEY',
     });
-    
+
     google.charts.setOnLoadCallback(drawRegionsMap);
-    
+
     function drawRegionsMap() {
-    
+
         windowWidth = $(window).width();
         windowHeight = $(window).height();
-    
+
         windowWidth = windowWidth / 1.7;
         windowHeight = windowHeight / 3;
         var data = new google.visualization.DataTable();
-    
+
         data.addColumn('string', 'Region');
         data.addColumn('number', 'Contagios Totales');
-    
+
         data.addRows([
             [{ f: 'Arica y Parinacota', v: 'CL-AP' }, lastContagios[0]],
             [{ f: 'Tarapacá', v: 'CL-TA' }, lastContagios[1]],
@@ -671,19 +800,19 @@ function loadMap(regionsData){
             [{ f: 'Metropolitana', v: 'CL-RM' }, lastContagios[13]],
             [{ f: 'Los Ríos', v: 'CL-LR' }, lastContagios[14]],
         ]);
-    
+
         var options = {
-    
+
             width: windowWidth,
-    
+
             region: 'CL',
             resolution: 'provinces',
-    
-            colorAxis: { colors: ['#f0c975', '#f57200','#f57200', '#f57200', '#f57200','#f57200', '#f57200', '#f57200', '#f57200','#f57200', '#f57200','#f57200','#de1717'] },
+
+            colorAxis: { colors: ['#f0c975', '#f57200', '#f57200', '#f57200', '#f57200', '#f57200', '#f57200', '#f57200', '#f57200', '#f57200', '#de1717', '#de1717', '#de1717'] },
             backgroundColor: '#c3dafe',
             datalessRegionColor: '#c9c9c9',
             defaultColor: '#f5f5f5',
-    
+
             'tooltip.textStyle': {
                 color: '#000',
                 fontName: 'Lato',
@@ -692,25 +821,24 @@ function loadMap(regionsData){
                 italic: false,
             }
         };
-    
+
         var mapContainer = document.getElementById('regions-div');
         var chart = new google.visualization.GeoChart(mapContainer);
-    
+
         function myClickHandler() {
             var selection = chart.getSelection();
             var message = '';
-    
+
             for (var i = 0; i < selection.length; i++) {
-    
+
                 var item = selection[i];
-    
-                if (item.row != null && item.column != null) {
-                    message += '{row:' + item.row + ',column:' + item.column + '}';
-    
-                    //siempre entra aquí
-                } else if (item.row != null) {
+
+                //siempre entra aquí
+                if (item.row != null) {
                     message += 'row: ' + data.hg[item.row].c[0].f;
-    
+
+                    updateSmallCharts(casesChart, deathsChart, data.hg[item.row].c[0].f)
+
                 } else if (item.column != null) {
                     message += '{column:' + item.column + '}';
                 }
@@ -718,21 +846,84 @@ function loadMap(regionsData){
             if (message == '') {
                 message = 'nothing';
             }
-            alert('You selected ' + message);
         }
-    
+
         google.visualization.events.addListener(chart, 'select', myClickHandler);
         chart.draw(data, options);
     }
-    
+
     $(window).resize(function () {
         drawRegionsMap();
     });
-    
-}
-
-
-
-const loadSmallCharts = () => {
 
 }
+
+const updateSmallCharts = (chartContagios, chartMuertes, regionName) => {
+
+    //ALISTANDO DATA
+
+    dataRegionesGlobal.forEach(regionData => {
+
+        if (regionData.region == regionName) {
+
+            contagiosParaChart = regionData.data.contagios;
+            muertesParaChart = regionData.data.muertes;
+        }
+    });
+
+    //CHART DE CONTAGIOS DE LA REGIÓN
+
+    chartContagios.options.title.text = 'Contagios Totales en ' + regionName;
+
+    chartContagios.data.datasets = [{
+        label: 'Contagios en la región',
+        data: contagiosParaChart,
+        backgroundColor: yellowRedGradient,
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+    }];
+
+    //CHART DE MUERTES DE LA REGIÓN
+
+    chartMuertes.options.title.text = 'Fallecidos Totales en ' + regionName;
+
+    chartMuertes.data.datasets = [{
+        label: 'Fallecidos en la región',
+        data: muertesParaChart,
+        backgroundColor: 'red',
+        borderWidth: 0,
+        borderColor: '#777',
+        hoverBorderWidth: '1',
+        hoverBorderColor: 'rgba(255, 231, 0, 0.9)',
+
+    }];
+
+
+    chartContagios.update();
+    chartMuertes.update();
+}
+
+/*  TOGGLE MAP  */
+
+const mapForm = document.getElementById('mapa-form');
+
+mapForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    bigChartContainer.setAttribute("style", "display: none;")
+
+    mapContainer.removeAttribute("style");
+    smallChartsContainer.removeAttribute("style");
+}
+
+const toggleToChart = () => {
+
+    bigChartContainer.removeAttribute("style")
+
+    mapContainer.setAttribute("style", "display: none;");
+    smallChartsContainer.setAttribute("style", "display: none;");
+}
+
