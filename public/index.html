@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COVID Chile</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="main.css" type="text/css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+
+<body>
+
+    <div id="content">
+
+        <span class="slide">
+            <p class="open" onclick="openSlideMenu()">
+                <i class="fas fa-bars"></i>
+            </p>
+        </span>
+
+        <div id="menu" class="nav">
+            <p class="close" onclick="closeSlideMenu()">
+                <i class="fas fa-times"></i>
+            </p>
+
+            <form id="totales-form" class="forms">
+                <input id="submit-button" type="submit" value="Casos Totales" />
+            </form>
+
+            <form id="diarios-form" class="forms">
+                <input id="submit-button" type="submit" value="Casos Diarios" />
+            </form>
+
+            <form id="muertes-totales-form" class="forms">
+                <input id="submit-button" type="submit" value="Fallecidos Totales" />
+            </form>
+
+            <form id="muertes-diarias-form" class="forms">
+                <input id="submit-button" type="submit" value="Fallecidos Por Día" />
+            </form>
+
+            <form id="mapa-form" class="forms">
+                <input id="submit-button" type="submit" value="Mapa Por Regiones" />
+            </form>
+        </div>
+
+        <div class="title-container">
+            <p class="maintitle"><strong>Coronavirus</strong> en Chile</p>
+        </div>
+
+        <div class="container" id="totales-div">
+            <canvas id="totales-chart"></canvas>
+        </div>
+
+        <div class="map-container" id="map-container" style="display: none;">
+            <div id="regions-div" class="chart"></div>
+
+            <div class="map-text-box">
+                <p class="map-title">Contagios Por Región</p>
+                <p class="map-text">Haz click en alguna región para ver su información.</p>
+            </div>
+        </div>
+
+        <div id="small-charts" class="small-charts" style="display: none;">
+            <div id="small-chart-container"  class="chart-left">
+                <canvas id="small-chart-contagios"></canvas>
+            </div>
+    
+            <div id="small-chart-container" class="chart-right">
+                <canvas id="small-chart-muertes" ></canvas>
+            </div>
+        </div>
+
+        <div id="mid-section">
+            <p id="info-parr"></p>
+        </div>
+
+    </div>
+</body>
+
+<script src="index.js"></script>
+
+</html>
