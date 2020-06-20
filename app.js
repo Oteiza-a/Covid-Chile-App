@@ -4,8 +4,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-var port = porcess.env.port || 5000;
+var port = process.env.port || 5000;
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('App listening on port 3000');
 })
