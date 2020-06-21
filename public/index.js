@@ -243,6 +243,10 @@ const paintTotalCasesChart = () => {
 
         },
         options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
             title: {
                 display: true,
                 text: 'Casos de Contagio Totales Confirmados',
