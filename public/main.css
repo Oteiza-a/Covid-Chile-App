@@ -10,8 +10,9 @@ body {
 .title-container {
     font-family: 'Lato';
     font-size: calc(1.5em + 1vw);
+    text-align: center;
     background-color: white;
-    max-width: fit-content;
+    max-width: 35%;
     margin: 2% auto;
     padding-left: 40px;
     padding-right: 40px;
