@@ -5,9 +5,11 @@ body {
     overflow-x: hidden;
 }
 
+/*  Big Charts  */
+
 .title-container {
     font-family: 'Lato';
-    font-size: 40px;
+    font-size: calc(1.5em + 1vw);
     background-color: white;
     max-width: fit-content;
     margin: 2% auto;
@@ -19,11 +21,11 @@ body {
     box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.2);
 }
 
-.main-title{
+.main-title {
     margin-bottom: 20px;
 }
 
-.sub-title{
+.sub-title {
     width: 100%;
     margin-top: 0px;
     font-family: Lato;
@@ -75,15 +77,97 @@ body {
 }
 
 #info-parr {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
     text-align: center;
 }
 
 #mid-section {
+    width: 100%;
+    color: #333;
     padding: 1%;
     background-color: white;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+
+#report-container {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+
+#report-title {
+    font-size: Lato;
+    text-align: center;
+    padding-top: 5%;
+}
+
+#last-report {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 1%;
+}
+
+.last-report-circle {
+    color: black;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+    background-color: #e24b4b;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 400px;
+}
+
+.report-text {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 120px;
+}
+
+/* responsive big charts */
+
+@media screen and (min-width: 500px) {
+    #report-title {
+        font-size: 18px;
+    }
+    #mid-section {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    #report-title {
+        font-size: 20px;
+    }
+    #mid-section {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    #report-title {
+        font-size: 25px;
+    }
+    #mid-section {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media screen and (min-width: 950px) {
+    .last-report-circle {
+        width: 190px;
+        height: 190px;
+        margin: 22px;
+    }
 }
 
 /*  NAVBAR   */
@@ -149,92 +233,71 @@ body {
     position: fixed;
 }
 
-        /*  MAP  */ 
+/*  MAP  */
 
 .map-container {
     background-color: tomato;
-
-    margin : 3%  auto;
-
+    margin: 3% auto;
     background-color: white;
-
     border-radius: 8px;
     box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.3);
-
     padding: 2%;
-
     max-width: fit-content;
-    
-
 }
 
-.chart{
-
+.chart {
     width: 100%;
     max-height: 900px;
 }
 
-.map-text-box{
+.map-text-box {
     position: absolute;
-
     left: 26%;
     bottom: 30%;
-
     width: 20%;
-
     color: black;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-
     padding: 3%;
-
 }
 
-.map-title{
-    
+.map-title {
     font-size: 24px;
     color: #444;
     margin: 10px 0px;
-
 }
 
-.map-text{
+.map-text {
     margin: 10px 0px;
     color: #444;
 }
 
-        /*  SMALL CHARTS  */
+/*  SMALL CHARTS  */
 
-.small-charts{
+.small-charts {
     width: 85%;
-
     margin-left: auto;
     margin-right: auto;
-
     margin-bottom: 2%;
     padding-left: 3%;
     padding-right: 3%;
 }
 
-#small-chart-container{
-
+#small-chart-container {
     text-align: center;
     background-color: white;
     display: inline-block;
-
     width: 47.5%;
-
     padding: 1%;
     margin: 0px 0px;
-
 }
 
-.chart-left{
+.chart-left {
     border-radius: 8px 0px 0px 8px;
     box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
-.chart-right{
-    border-radius: 0pc 8px 8px 0px ;
+.chart-right {
+    border-radius: 0pc 8px 8px 0px;
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
 }

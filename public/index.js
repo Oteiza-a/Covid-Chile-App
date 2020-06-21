@@ -52,14 +52,9 @@ const loadData = () => {
         .then(res => res.json())
         .then(data => {
 
-            //console.log(data);
-
             preparedList = Object.keys(data).map((day) => {
-                //console.log(day)
                 return { day: day, data: data[day] };
             })
-
-            //console.log(preparedList)
 
             let formattedDay = '';
             let counter = 0;
@@ -577,7 +572,6 @@ const loadSmallChartsData = () => {
             dataRegionesGlobal = preparedData;
 
             //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
-            console.log(dataRegionesGlobal);
             loadMap();
             paintSmallCharts();
         })
