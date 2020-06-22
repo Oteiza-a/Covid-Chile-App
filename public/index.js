@@ -272,6 +272,12 @@ const paintTotalCasesChart = () => {
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+
+                xAxes: [{
+                    ticks: {
+                        fontSize: 11,
+                    }
                 }]
             },
             tooltips: {
