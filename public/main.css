@@ -132,7 +132,7 @@ body {
 
 /* responsive big charts */
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 0px) {
     #report-title {
         font-size: 18px;
     }
@@ -142,7 +142,14 @@ body {
 
     .container{
         width: 90%;
-        height: 60vh;
+        height: 45vh;
+    }
+}
+
+@media screen and (min-width: 650px){
+    .container{
+        width: 90%;
+        height: 65vh;
     }
 }
 
