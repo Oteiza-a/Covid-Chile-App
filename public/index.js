@@ -249,7 +249,7 @@ const paintTotalCasesChart = () => {
 
             title: {
                 display: true,
-                text: 'Casos de Contagio Totales Confirmados',
+                text: 'Casos de Contagio Totales',
                 fontSize: 25,
             },
             legend: {
@@ -429,7 +429,7 @@ function updateADiarios(chart) {
 
 function updateATotales(chart) {
 
-    chart.options.title.text = 'Casos de Contagio Totales Confirmados';
+    chart.options.title.text = 'Casos de Contagio Totales';
 
     chart.data.datasets = [{
         label: 'Casos confirmados totales',
