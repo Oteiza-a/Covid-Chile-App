@@ -202,8 +202,15 @@ body {
     }
 }
 
-@media screen and (max-width: 850px) {
-    
+@media screen and (max-width: 650px) {
+    .title-container{
+        margin-top: 5%;
+    }
+
+    .container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
 }
 
 @media screen and (min-width: 950px) {
@@ -319,21 +326,22 @@ body {
 /*  SMALL CHARTS  */
 
 .small-charts {
-    width: 85%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2%;
-    padding-left: 3%;
-    padding-right: 3%;
 }
 
 #small-chart-container {
     text-align: center;
     background-color: white;
-    display: inline-block;
-    width: 47.5%;
+    width: 500px;
+    height: 60vh;
     padding: 1%;
-    margin: 0px 0px;
+    margin: 2%;
 }
 
 .chart-left {
@@ -344,4 +352,20 @@ body {
 .chart-right {
     border-radius: 0pc 8px 8px 0px;
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 1153px) {
+    #small-chart-container{
+        width: 80%;
+        height: 50vh;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #small-chart-container{
+        width: 85%;
+        height: 40vh;
+
+    }
 }

@@ -249,7 +249,7 @@ const paintTotalCasesChart = () => {
 
             title: {
                 display: true,
-                text: 'Casos de Contagio Totales',
+                text: 'Contagios Totales',
                 fontSize: 25,
             },
             legend: {
@@ -410,7 +410,7 @@ const showParagraph = () => {
 
 function updateADiarios(chart) {
 
-    chart.options.title.text = 'Casos Diarios Confirmados';
+    chart.options.title.text = 'Casos Por Día';
 
     chart.data.datasets = [{
         label: 'Casos diarios confirmados',
@@ -460,7 +460,7 @@ function updateATotales(chart) {
 
 function updateAMuertesTotales(chart) {
 
-    chart.options.title.text = 'Fallecidos Totales Confirmados';
+    chart.options.title.text = 'Fallecidos Totales';
 
     chart.data.datasets = [{
         label: 'Fallecidos totales',
@@ -485,7 +485,7 @@ function updateAMuertesTotales(chart) {
 
 function updateAMuertesDiarias(chart) {
 
-    chart.options.title.text = 'Fallecidos Por Día Confirmados';
+    chart.options.title.text = 'Fallecidos Por Día';
 
     chart.data.datasets = [{
         label: 'Fallecidos Por Día',
@@ -630,9 +630,13 @@ const paintSmallCharts = () => {
 
         },
         options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
             title: {
                 display: true,
-                text: 'Contagios totales en Arica y Parinacota',
+                text: 'Contagios: Arica y Parinacota',
                 fontSize: 19,
             },
             legend: {
@@ -654,6 +658,11 @@ const paintSmallCharts = () => {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontSize: 11,
                     }
                 }]
             },
@@ -689,9 +698,13 @@ const paintSmallCharts = () => {
 
         },
         options: {
+            
+            responsive: true,
+            maintainAspectRatio: false,
+
             title: {
                 display: true,
-                text: 'Fallecidos Totales en Arica y Parinacota',
+                text: 'Fallecidos: Arica y Parinacota',
                 fontSize: 19,
             },
             legend: {
@@ -713,6 +726,11 @@ const paintSmallCharts = () => {
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontSize: 11,
                     }
                 }]
             },
@@ -877,7 +895,7 @@ const updateSmallCharts = (chartContagios, chartMuertes, regionName) => {
 
     //CHART DE CONTAGIOS DE LA REGIÓN
 
-    chartContagios.options.title.text = 'Contagios Totales en ' + regionName;
+    chartContagios.options.title.text = 'Contagios: ' + regionName;
 
     chartContagios.data.datasets = [{
         label: 'Contagios en la región',
@@ -892,7 +910,7 @@ const updateSmallCharts = (chartContagios, chartMuertes, regionName) => {
 
     //CHART DE MUERTES DE LA REGIÓN
 
-    chartMuertes.options.title.text = 'Fallecidos Totales en ' + regionName;
+    chartMuertes.options.title.text = 'Fallecidos: ' + regionName;
 
     chartMuertes.data.datasets = [{
         label: 'Fallecidos en la región',
