@@ -398,14 +398,16 @@ const paintDailyCasesChart = () => {
 }
 
 const showParagraph = () => {
-    const parr = document.getElementById('info-parr');
+    const reportTitle = document.getElementById('report-title');
 
     let lastDate = datesList[datesList.length - 1];
     let lastNewCases = newCasesList[newCasesList.length - 1];
     let lastTotalCases = confirmedCasesList[confirmedCasesList.length - 1];
     let lastNewDeaths = dailyDeathsList[dailyDeathsList.length - 1];
     let lastTotalDeaths = totalDeathsList[totalDeathsList.length - 1];
-    parr.innerHTML = `<p>El último reporte de COVID-19 en Chile fue el ${lastDate}: hubieron ${lastNewCases} nuevos contagios y ${lastNewDeaths} fallecidos.<br/>Llevando a un total histórico de ${lastTotalCases} contagios y ${lastTotalDeaths} fallecidos en Chile.</p>`;
+
+    reportTitle.innerHTML = `Último reporte registrado<br>(${lastDate})`;
+    
 }
 
 function updateADiarios(chart) {
