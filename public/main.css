@@ -296,9 +296,9 @@ body {
     max-width: fit-content;
 }
 
-.chart {
+.map-chart {
     width: 100%;
-    max-height: 900px;
+    max-height: 1200px;
 }
 
 .map-text-box {
@@ -322,6 +322,8 @@ body {
     margin: 10px 0px;
     color: #444;
 }
+
+
 
 /*  SMALL CHARTS  */
 

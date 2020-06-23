@@ -435,7 +435,7 @@ function updateADiarios(chart) {
 
 function updateATotales(chart) {
 
-    chart.options.title.text = 'Casos de Contagio Totales';
+    chart.options.title.text = 'Contagios Totales';
 
     chart.data.datasets = [{
         label: 'Casos confirmados totales',
@@ -798,7 +798,7 @@ function loadMap(casesChart, deathsChart) {
         windowWidth = $(window).width();
         windowHeight = $(window).height();
 
-        windowWidth = windowWidth / 1.7;
+        windowWidth = windowWidth / 1.1;
         windowHeight = windowHeight / 3;
         var data = new google.visualization.DataTable();
 
@@ -835,13 +835,6 @@ function loadMap(casesChart, deathsChart) {
             datalessRegionColor: '#c9c9c9',
             defaultColor: '#f5f5f5',
 
-            'tooltip.textStyle': {
-                color: '#000',
-                fontName: 'Lato',
-                fontSize: 30,
-                bold: false,
-                italic: false,
-            }
         };
 
         var mapContainer = document.getElementById('regions-div');
