@@ -15,10 +15,6 @@ const totalesForm = document.getElementById('totales-form');
 const muertesTotalesForm = document.getElementById('muertes-totales-form');
 const muertesDiariasForm = document.getElementById('muertes-diarias-form');
 
-const bigChartContainer = document.getElementById('totales-div');
-const mapContainer = document.getElementById('map-container');
-const smallChartsContainer = document.getElementById('small-charts');
-
 let myChart = document.getElementById('totales-chart').getContext("2d");
 let h = document.getElementById('totales-div').clientHeight;
 
@@ -220,7 +216,7 @@ function getDailyDeaths(allDataArr) {
 const paintTotalCasesChart = () => {
 
     //Global Options:
-    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontFamily = 'Helvetica';
     Chart.defaults.global.defaultFontSize = 14;
     Chart.defaults.global.defaultFontColor = '#333';
 
@@ -323,7 +319,7 @@ const paintTotalCasesChart = () => {
 const paintDailyCasesChart = () => {
 
     //Global Options:
-    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontFamily = 'Helvetica';
     Chart.defaults.global.defaultFontSize = 14;
     Chart.defaults.global.defaultFontColor = '#333';
 
@@ -415,7 +411,7 @@ const showParagraph = () => {
     dailyCases.innerHTML = `<div class="report-stats"><p class="report-data">${lastNewCases}</p><p class="report-text">nuevos<br>contagios</p></div>`
     ttlDeaths.innerHTML = `<div class="report-stats"><p class="report-data">${lastTotalDeaths}</p><p class="report-text">fallecidos<br>registrados</p></div>`
     dailyDeaths.innerHTML = `<div class="report-stats"><p class="report-data">${lastNewDeaths}</p><p class="report-text">nuevos<br>fallecidos</p></div>`
-    
+
 }
 
 function updateADiarios(chart) {
@@ -708,7 +704,7 @@ const paintSmallCharts = () => {
 
         },
         options: {
-            
+
             responsive: true,
             maintainAspectRatio: false,
 
@@ -811,15 +807,15 @@ function loadMap(casesChart, deathsChart) {
         //media query
         var x = window.matchMedia("(max-width: 600px)");
 
-        if(x.matches) {
-            windowWidth = windowWidth / 0.5;
+        if (x.matches) {
+            windowWidth = windowWidth / 0.4;
             windowHeight = windowHeight / 3;
-        }else{
+        } else {
             windowWidth = windowWidth / 1.1;
             windowHeight = windowHeight / 3;
         }
 
-        
+
         var data = new google.visualization.DataTable();
 
         data.addColumn('string', 'Region');
@@ -945,6 +941,11 @@ const updateSmallCharts = (chartContagios, chartMuertes, regionName) => {
 
 const mapForm = document.getElementById('mapa-form');
 
+const bigChartContainer = document.getElementById('totales-div');
+const mapContainer = document.getElementById('map-container');
+const smallChartsContainer = document.getElementById('small-charts');
+const mobileText = document.getElementById('map-mobile-text');
+
 mapForm.onsubmit = (e) => {
     e.preventDefault();
 
@@ -952,6 +953,12 @@ mapForm.onsubmit = (e) => {
 
     mapContainer.removeAttribute("style");
     smallChartsContainer.removeAttribute("style");
+
+    var x = window.matchMedia("(max-width: 600px)");
+
+    if (x.matches) {
+        mobileText.removeAttribute("style");
+    }
 }
 
 const toggleToChart = () => {
@@ -960,5 +967,6 @@ const toggleToChart = () => {
 
     mapContainer.setAttribute("style", "display: none;");
     smallChartsContainer.setAttribute("style", "display: none;");
+    mobileText.setAttribute("style", "display:none;")
 }
 
