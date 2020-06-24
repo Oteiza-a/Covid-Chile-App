@@ -808,8 +808,18 @@ function loadMap(casesChart, deathsChart) {
         windowWidth = $(window).width();
         windowHeight = $(window).height();
 
-        windowWidth = windowWidth / 1.1;
-        windowHeight = windowHeight / 3;
+        //media query
+        var x = window.matchMedia("(max-width: 600px)");
+
+        if(x.matches) {
+            windowWidth = windowWidth / 0.5;
+            windowHeight = windowHeight / 3;
+        }else{
+            windowWidth = windowWidth / 1.1;
+            windowHeight = windowHeight / 3;
+        }
+
+        
         var data = new google.visualization.DataTable();
 
         data.addColumn('string', 'Region');
