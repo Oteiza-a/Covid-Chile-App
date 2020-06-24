@@ -399,6 +399,10 @@ const paintDailyCasesChart = () => {
 
 const showParagraph = () => {
     const reportTitle = document.getElementById('report-title');
+    const ttlCases = document.getElementById('casos-totales-circle');
+    const dailyCases = document.getElementById('casos-diario-circle');
+    const ttlDeaths = document.getElementById('fallecidos-totales-circle');
+    const dailyDeaths = document.getElementById('fallecidos-diario-circle');
 
     let lastDate = datesList[datesList.length - 1];
     let lastNewCases = newCasesList[newCasesList.length - 1];
@@ -407,6 +411,10 @@ const showParagraph = () => {
     let lastTotalDeaths = totalDeathsList[totalDeathsList.length - 1];
 
     reportTitle.innerHTML = `Último reporte registrado<br>(${lastDate})`;
+    ttlCases.innerHTML = `<div class="report-stats"><p class="report-data">${lastTotalCases}</p><p class="report-text">contagios<br>registrados</p></div>`
+    dailyCases.innerHTML = `<div class="report-stats"><p class="report-data">${lastNewCases}</p><p class="report-text">nuevos<br>contagios</p></div>`
+    ttlDeaths.innerHTML = `<div class="report-stats"><p class="report-data">${lastTotalDeaths}</p><p class="report-text">fallecidos<br>registrados</p></div>`
+    dailyDeaths.innerHTML = `<div class="report-stats"><p class="report-data">${lastNewDeaths}</p><p class="report-text">nuevos<br>fallecidos</p></div>`
     
 }
 

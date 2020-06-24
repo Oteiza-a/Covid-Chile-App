@@ -2,15 +2,14 @@
 <html>
 
 <head>
-    <title>COVID Chile</title>
+    <title>COVID Chile App</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="main.css" type="text/css" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.jscharting.com/latest/jscharting.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -29,6 +28,7 @@
         </span>
 
         <div id="menu" class="nav">
+
             <p class="close" onclick="closeSlideMenu()">
                 <i class="fas fa-times"></i>
             </p>
@@ -90,33 +90,33 @@
 
                 <div id="last-report">
     
-                    <div class="last-report-circle">
+                    <div class="last-report-circle" id="casos-totales-circle">
                         <p class="report-text">A</p>
                     </div>
         
-                    <div class="last-report-circle">
+                    <div class="last-report-circle" id="casos-diario-circle">
                         <p class="report-text">B</p>
                     </div>
 
                     <br class="report-br"/>
 
-                    <div class="last-report-circle">
+                    <div class="last-report-circle" id="fallecidos-totales-circle">
                         <p class="report-text">C</p>
                     </div>
                     
-                    <div class="last-report-circle">
+                    <div class="last-report-circle" id="fallecidos-diario-circle">
                         <p class="report-text">D</p>
                     </div>
                 </div>
             </div>
             
             <div class="contact-div">
-                <p>Este sitio utiliza los datos oficiales del Gobierno de Chile y el Ministerio de Salud. Se actualizan en tiempo real.<br>Desarrollado por Alberto Oteíza, Developer.</p>
+                <p class="contact-text">Este sitio utiliza los datos oficiales del Gobierno de Chile y el Ministerio de Salud. Se actualizan en tiempo real.<br>Desarrollado por Alberto Oteíza, Developer.</p>
 
                 <ul>
-                    <li><a href="https://github.com/Oteiza-a" target="_blank"><i class="fab fa-github-square"></i>  https://github.com/Oteiza-a</a></li>
-                    <li><a href="https://www.linkedin.com/in/alberto-oteiza/" target="_blank"><i class="fab fa-linkedin"></i>  https://www.linkedin.com/in/alberto-oteiza/</a></li>
-                    <li><a href="mailto:alberto.jesus.oteiza@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i>  alberto.jesus.oteiza@gmail.com</a></li>
+                    <li><a href="https://github.com/Oteiza-a" target="_blank"><i class="fab fa-github-square"></i><br>https://github.com/Oteiza-a</a></li>
+                    <li><a href="https://www.linkedin.com/in/alberto-oteiza/" target="_blank"><i class="fab fa-linkedin"></i><br>https://www.linkedin.com/in/alberto-oteiza/</a></li>
+                    <li><a href="mailto:alberto.jesus.oteiza@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i><br>alberto.jesus.oteiza@gmail.com</a></li>
                 </ul>
             </div>
 

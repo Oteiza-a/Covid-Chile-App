@@ -1,8 +1,13 @@
+html{
+    margin-right: 0px;
+}
+
+
 body {
     background-color: rgb(242, 242, 242);
-    font-family: sans-serif;
-    margin: 0 0;
-    overflow-x: hidden;
+    font-family: Lato;
+    margin: 0px 0px;
+
 }
 
 /*  Big Charts  */
@@ -159,39 +164,55 @@ body {
 
 .report-info{
     margin: 0px auto;
+    width: 680px;
 }
 
 #report-title {
     font-size: Lato;
     text-align: center;
-    padding-top: 3%;
+    padding-top: 5%;
+    margin-bottom: 5%;
 }
 
 #last-report {
     text-align: center;
-    width: 800px;
+    margin: 0px auto;
+    width: 680px;
 
     padding: 1%;
-    width: 0px  auto;
 }
 
 .last-report-circle {
     display: inline-block;
     text-align: center;
-    color: black;
+    color: white;
     text-align: center;
     width: 150px;
     height: 150px;
     margin: 1%;
-    background-color: #e24b4b;
+    background-color: steelblue;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 50%;
 }
 
-.report-text {
+.report-data {
     text-align: center;
-    vertical-align: middle;
-    line-height: 120px;
+    margin: 0px 0px;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.report-text{
+    margin-top: 6%;
+}
+
+.report-stats{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    margin: 0px auto;
+    top: 22%;
+    
 }
 
 .contact-div{
@@ -200,15 +221,15 @@ body {
 
     border-left: solid 1px #aaa;
     width: 500px;
-    padding-right: 2%;
-    padding-left: 1%;
-    padding-top: 2%;
-}
+    height: fit-content;
+    padding: 2%;
+    margin: auto 0px;
+}  
 
 a {
     
     color: #444;
-    text-decoration: none; /* no underline */
+    text-decoration: none;
   }
 
 ul {
@@ -220,20 +241,19 @@ li {
     list-style: none;
     margin: 10px 20px;
     display: block;
-    font-size: 17px;
     padding: 10px 20px;
     border: solid 1px #999;
     border-radius: 6px;
 }
 
 a:hover{
-    color: rgb(255, 147, 58);
+    color: steelblue;
     transition: 0.5s;
 }
 
 li:hover{
-    color: rgb(255, 147, 58);
-    border: solid 1px rgb(255, 147, 58);
+    color: steelblue;
+    border: solid 1px steelblue;
     transition: 0.5s ;
 }
 
@@ -241,9 +261,14 @@ li:hover{
     display: none;
 }
 
+.contact-text{
+    padding: 0px 5%;
+    margin-bottom: 5%;
+}
+
 /* RESPONSIVE REPORT SECTION */
 
-@media screen and (max-width: 1341px){
+@media screen and (max-width: 1228px){
     .contact-div{
         border: none;
     }
@@ -262,17 +287,59 @@ li:hover{
     }
 }
 
+@media screen and (max-width: 800px){
+    .report-info{
+        width: 100%;
+    }
+
+    #last-report{
+        width: 90%;
+    }
+}
+
 @media screen and (max-width: 610px) {
     .last-report-circle{
         width: 150px;
         height: 150px;
         margin: 2%;
     }
+
+    #last-report{
+        width: 90%;
+    }
+
+    .contact-div{
+        width: 95%;
+    }
+
     .report-br{
         display: block;
     }
 }
 
+@media screen and (max-width: 500px){
+    .last-report-circle{
+        width: 120px;
+        height: 120px;
+        margin: 2%;
+    }
+
+    #last-report{
+        width: 90%;
+    }
+    .contact-div{
+        width: 95%;
+    }
+
+    .report-data {
+        font-size: 25px;
+        font-weight: 900;
+    }
+    
+    .report-text{
+        margin-top: 5%;
+    }
+}
 
 /*  NAVBAR   */
 
@@ -328,7 +395,7 @@ li:hover{
 #content {
     margin-left: auto;
     margin-right: auto;
-    width: 100vw;
+    width: 100%;
    
 }
 
