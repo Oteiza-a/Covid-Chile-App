@@ -28,6 +28,679 @@ var yellowPurpleGradient =
 yellowPurpleGradient.addColorStop(0, 'rgba(162, 0, 244, 1)');
 yellowPurpleGradient.addColorStop(1, 'rgba(124, 220, 255, 1)');
 
+const historical = {
+    "03/07/2020":{
+       "confirmed":"7",
+       "confirmedper100k":0.04,
+       "day":"03/07/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/09/2020":{
+       "confirmed":"12",
+       "confirmedper100k":0.06,
+       "day":"03/09/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/10/2020":{
+       "confirmed":"17",
+       "confirmedper100k":0.09,
+       "day":"03/10/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/11/2020":{
+       "confirmed":"23",
+       "confirmedper100k":0.12,
+       "day":"03/11/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/12/2020":{
+       "confirmed":"33",
+       "confirmedper100k":0.18,
+       "day":"03/12/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/13/2020":{
+       "confirmed":"43",
+       "confirmedper100k":0.23,
+       "day":"03/13/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/14/2020":{
+       "confirmed":"61",
+       "confirmedper100k":0.33,
+       "day":"03/14/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/15/2020":{
+       "confirmed":"75",
+       "confirmedper100k":0.4,
+       "day":"03/15/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/16/2020":{
+       "confirmed":"156",
+       "confirmedper100k":0.83,
+       "day":"03/16/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/17/2020":{
+       "confirmed":"201",
+       "confirmedper100k":1.07,
+       "day":"03/17/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"1",
+       "recoveredper100k":0.01
+    },
+    "03/18/2020":{
+       "confirmed":"238",
+       "confirmedper100k":1.27,
+       "day":"03/18/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"3",
+       "recoveredper100k":0.02
+    },
+    "03/19/2020":{
+       "confirmed":"342",
+       "confirmedper100k":1.82,
+       "day":"03/19/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"4",
+       "recoveredper100k":0.02
+    },
+    "03/20/2020":{
+       "confirmed":"434",
+       "confirmedper100k":2.31,
+       "day":"03/20/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"5",
+       "recoveredper100k":0.03
+    },
+    "03/21/2020":{
+       "confirmed":"537",
+       "confirmedper100k":2.86,
+       "day":"03/21/2020",
+       "deaths":"1",
+       "deathsper100k":0.01,
+       "recovered":"6",
+       "recoveredper100k":0.03
+    },
+    "03/22/2020":{
+       "confirmed":"632",
+       "confirmedper100k":3.37,
+       "day":"03/22/2020",
+       "deaths":"1",
+       "deathsper100k":0.01,
+       "recovered":"8",
+       "recoveredper100k":0.04
+    },
+    "03/23/2020":{
+       "confirmed":"746",
+       "confirmedper100k":3.98,
+       "day":"03/23/2020",
+       "deaths":"2",
+       "deathsper100k":0.01,
+       "recovered":"11",
+       "recoveredper100k":0.06
+    },
+    "03/24/2020":{
+       "confirmed":"922",
+       "confirmedper100k":4.92,
+       "day":"03/24/2020",
+       "deaths":"2",
+       "deathsper100k":0.01,
+       "recovered":"17",
+       "recoveredper100k":0.09
+    },
+    "03/25/2020":{
+       "confirmed":"1142",
+       "confirmedper100k":6.09,
+       "day":"03/25/2020",
+       "deaths":"3",
+       "deathsper100k":0.02,
+       "recovered":"22",
+       "recoveredper100k":0.12
+    },
+    "03/26/2020":{
+       "confirmed":"1306",
+       "confirmedper100k":6.96,
+       "day":"03/26/2020",
+       "deaths":"4",
+       "deathsper100k":0.02,
+       "recovered":"33",
+       "recoveredper100k":0.18
+    },
+    "03/27/2020":{
+       "confirmed":"1610",
+       "confirmedper100k":8.59,
+       "day":"03/27/2020",
+       "deaths":"5",
+       "deathsper100k":0.03,
+       "recovered":"43",
+       "recoveredper100k":0.23
+    },
+    "03/28/2020":{
+       "confirmed":"1909",
+       "confirmedper100k":10.18,
+       "day":"03/28/2020",
+       "deaths":"6",
+       "deathsper100k":0.03,
+       "recovered":"61",
+       "recoveredper100k":0.33
+    },
+    "03/29/2020":{
+       "confirmed":"2139",
+       "confirmedper100k":11.41,
+       "day":"03/29/2020",
+       "deaths":"7",
+       "deathsper100k":0.04,
+       "recovered":"75",
+       "recoveredper100k":0.4
+    },
+    "03/30/2020":{
+       "confirmed":"2449",
+       "confirmedper100k":13.06,
+       "day":"03/30/2020",
+       "deaths":"8",
+       "deathsper100k":0.04,
+       "recovered":"156",
+       "recoveredper100k":0.83
+    },
+    "03/31/2020":{
+       "confirmed":"2738",
+       "confirmedper100k":14.6,
+       "day":"03/31/2020",
+       "deaths":"12",
+       "deathsper100k":0.06,
+       "recovered":"201",
+       "recoveredper100k":1.07
+    },
+    "04/01/2020":{
+       "confirmed":"3031",
+       "confirmedper100k":16.16,
+       "day":"04/01/2020",
+       "deaths":"16",
+       "deathsper100k":0.09,
+       "recovered":"234",
+       "recoveredper100k":1.25
+    },
+    "04/02/2020":{
+       "confirmed":"3404",
+       "confirmedper100k":18.15,
+       "day":"04/02/2020",
+       "deaths":"18",
+       "deathsper100k":0.1,
+       "recovered":"335",
+       "recoveredper100k":1.79
+    },
+    "04/03/2020":{
+       "confirmed":"3737",
+       "confirmedper100k":19.93,
+       "day":"04/03/2020",
+       "deaths":"22",
+       "deathsper100k":0.12,
+       "recovered":"427",
+       "recoveredper100k":2.28
+    },
+    "04/04/2020":{
+       "confirmed":"4161",
+       "confirmedper100k":22.19,
+       "day":"04/04/2020",
+       "deaths":"27",
+       "deathsper100k":0.14,
+       "recovered":"528",
+       "recoveredper100k":2.82
+    },
+    "04/05/2020":{
+       "confirmed":"4471",
+       "confirmedper100k":23.84,
+       "day":"04/05/2020",
+       "deaths":"34",
+       "deathsper100k":0.18,
+       "recovered":"617",
+       "recoveredper100k":3.29
+    },
+    "04/06/2020":{
+       "confirmed":"4815",
+       "confirmedper100k":25.68,
+       "day":"04/06/2020",
+       "deaths":"37",
+       "deathsper100k":0.2,
+       "recovered":"728",
+       "recoveredper100k":3.88
+    },
+    "04/07/2020":{
+       "confirmed":"5116",
+       "confirmedper100k":27.28,
+       "day":"04/07/2020",
+       "deaths":"43",
+       "deathsper100k":0.23,
+       "recovered":"898",
+       "recoveredper100k":4.79
+    },
+    "04/08/2020":{
+       "confirmed":"5546",
+       "confirmedper100k":29.58,
+       "day":"04/08/2020",
+       "deaths":"48",
+       "deathsper100k":0.26,
+       "recovered":"1115",
+       "recoveredper100k":5.95
+    },
+    "04/09/2020":{
+       "confirmed":"5972",
+       "confirmedper100k":31.85,
+       "day":"04/09/2020",
+       "deaths":"57",
+       "deathsper100k":0.3,
+       "recovered":"1274",
+       "recoveredper100k":6.79
+    },
+    "04/10/2020":{
+       "confirmed":"6501",
+       "confirmedper100k":34.67,
+       "day":"04/10/2020",
+       "deaths":"65",
+       "deathsper100k":0.35,
+       "recovered":"1571",
+       "recoveredper100k":8.38
+    },
+    "04/11/2020":{
+       "confirmed":"6927",
+       "confirmedper100k":36.94,
+       "day":"04/11/2020",
+       "deaths":"73",
+       "deathsper100k":0.39,
+       "recovered":"1864",
+       "recoveredper100k":9.94
+    },
+    "04/12/2020":{
+       "confirmed":"7213",
+       "confirmedper100k":38.47,
+       "day":"04/12/2020",
+       "deaths":"80",
+       "deathsper100k":0.43,
+       "recovered":"2059",
+       "recoveredper100k":10.98
+    },
+    "04/13/2020":{
+       "confirmed":"7525",
+       "confirmedper100k":40.13,
+       "day":"04/13/2020",
+       "deaths":"82",
+       "deathsper100k":0.44,
+       "recovered":"2367",
+       "recoveredper100k":12.62
+    }
+}
+
+const regional = {
+    "03/07/2020":{
+       "confirmed":"7",
+       "confirmedper100k":0.04,
+       "day":"03/07/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/09/2020":{
+       "confirmed":"12",
+       "confirmedper100k":0.06,
+       "day":"03/09/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/10/2020":{
+       "confirmed":"17",
+       "confirmedper100k":0.09,
+       "day":"03/10/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/11/2020":{
+       "confirmed":"23",
+       "confirmedper100k":0.12,
+       "day":"03/11/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/12/2020":{
+       "confirmed":"33",
+       "confirmedper100k":0.18,
+       "day":"03/12/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/13/2020":{
+       "confirmed":"43",
+       "confirmedper100k":0.23,
+       "day":"03/13/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/14/2020":{
+       "confirmed":"61",
+       "confirmedper100k":0.33,
+       "day":"03/14/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/15/2020":{
+       "confirmed":"75",
+       "confirmedper100k":0.4,
+       "day":"03/15/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/16/2020":{
+       "confirmed":"156",
+       "confirmedper100k":0.83,
+       "day":"03/16/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"0",
+       "recoveredper100k":0.0
+    },
+    "03/17/2020":{
+       "confirmed":"201",
+       "confirmedper100k":1.07,
+       "day":"03/17/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"1",
+       "recoveredper100k":0.01
+    },
+    "03/18/2020":{
+       "confirmed":"238",
+       "confirmedper100k":1.27,
+       "day":"03/18/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"3",
+       "recoveredper100k":0.02
+    },
+    "03/19/2020":{
+       "confirmed":"342",
+       "confirmedper100k":1.82,
+       "day":"03/19/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"4",
+       "recoveredper100k":0.02
+    },
+    "03/20/2020":{
+       "confirmed":"434",
+       "confirmedper100k":2.31,
+       "day":"03/20/2020",
+       "deaths":"0",
+       "deathsper100k":0.0,
+       "recovered":"5",
+       "recoveredper100k":0.03
+    },
+    "03/21/2020":{
+       "confirmed":"537",
+       "confirmedper100k":2.86,
+       "day":"03/21/2020",
+       "deaths":"1",
+       "deathsper100k":0.01,
+       "recovered":"6",
+       "recoveredper100k":0.03
+    },
+    "03/22/2020":{
+       "confirmed":"632",
+       "confirmedper100k":3.37,
+       "day":"03/22/2020",
+       "deaths":"1",
+       "deathsper100k":0.01,
+       "recovered":"8",
+       "recoveredper100k":0.04
+    },
+    "03/23/2020":{
+       "confirmed":"746",
+       "confirmedper100k":3.98,
+       "day":"03/23/2020",
+       "deaths":"2",
+       "deathsper100k":0.01,
+       "recovered":"11",
+       "recoveredper100k":0.06
+    },
+    "03/24/2020":{
+       "confirmed":"922",
+       "confirmedper100k":4.92,
+       "day":"03/24/2020",
+       "deaths":"2",
+       "deathsper100k":0.01,
+       "recovered":"17",
+       "recoveredper100k":0.09
+    },
+    "03/25/2020":{
+       "confirmed":"1142",
+       "confirmedper100k":6.09,
+       "day":"03/25/2020",
+       "deaths":"3",
+       "deathsper100k":0.02,
+       "recovered":"22",
+       "recoveredper100k":0.12
+    },
+    "03/26/2020":{
+       "confirmed":"1306",
+       "confirmedper100k":6.96,
+       "day":"03/26/2020",
+       "deaths":"4",
+       "deathsper100k":0.02,
+       "recovered":"33",
+       "recoveredper100k":0.18
+    },
+    "03/27/2020":{
+       "confirmed":"1610",
+       "confirmedper100k":8.59,
+       "day":"03/27/2020",
+       "deaths":"5",
+       "deathsper100k":0.03,
+       "recovered":"43",
+       "recoveredper100k":0.23
+    },
+    "03/28/2020":{
+       "confirmed":"1909",
+       "confirmedper100k":10.18,
+       "day":"03/28/2020",
+       "deaths":"6",
+       "deathsper100k":0.03,
+       "recovered":"61",
+       "recoveredper100k":0.33
+    },
+    "03/29/2020":{
+       "confirmed":"2139",
+       "confirmedper100k":11.41,
+       "day":"03/29/2020",
+       "deaths":"7",
+       "deathsper100k":0.04,
+       "recovered":"75",
+       "recoveredper100k":0.4
+    },
+    "03/30/2020":{
+       "confirmed":"2449",
+       "confirmedper100k":13.06,
+       "day":"03/30/2020",
+       "deaths":"8",
+       "deathsper100k":0.04,
+       "recovered":"156",
+       "recoveredper100k":0.83
+    },
+    "03/31/2020":{
+       "confirmed":"2738",
+       "confirmedper100k":14.6,
+       "day":"03/31/2020",
+       "deaths":"12",
+       "deathsper100k":0.06,
+       "recovered":"201",
+       "recoveredper100k":1.07
+    },
+    "04/01/2020":{
+       "confirmed":"3031",
+       "confirmedper100k":16.16,
+       "day":"04/01/2020",
+       "deaths":"16",
+       "deathsper100k":0.09,
+       "recovered":"234",
+       "recoveredper100k":1.25
+    },
+    "04/02/2020":{
+       "confirmed":"3404",
+       "confirmedper100k":18.15,
+       "day":"04/02/2020",
+       "deaths":"18",
+       "deathsper100k":0.1,
+       "recovered":"335",
+       "recoveredper100k":1.79
+    },
+    "04/03/2020":{
+       "confirmed":"3737",
+       "confirmedper100k":19.93,
+       "day":"04/03/2020",
+       "deaths":"22",
+       "deathsper100k":0.12,
+       "recovered":"427",
+       "recoveredper100k":2.28
+    },
+    "04/04/2020":{
+       "confirmed":"4161",
+       "confirmedper100k":22.19,
+       "day":"04/04/2020",
+       "deaths":"27",
+       "deathsper100k":0.14,
+       "recovered":"528",
+       "recoveredper100k":2.82
+    },
+    "04/05/2020":{
+       "confirmed":"4471",
+       "confirmedper100k":23.84,
+       "day":"04/05/2020",
+       "deaths":"34",
+       "deathsper100k":0.18,
+       "recovered":"617",
+       "recoveredper100k":3.29
+    },
+    "04/06/2020":{
+       "confirmed":"4815",
+       "confirmedper100k":25.68,
+       "day":"04/06/2020",
+       "deaths":"37",
+       "deathsper100k":0.2,
+       "recovered":"728",
+       "recoveredper100k":3.88
+    },
+    "04/07/2020":{
+       "confirmed":"5116",
+       "confirmedper100k":27.28,
+       "day":"04/07/2020",
+       "deaths":"43",
+       "deathsper100k":0.23,
+       "recovered":"898",
+       "recoveredper100k":4.79
+    },
+    "04/08/2020":{
+       "confirmed":"5546",
+       "confirmedper100k":29.58,
+       "day":"04/08/2020",
+       "deaths":"48",
+       "deathsper100k":0.26,
+       "recovered":"1115",
+       "recoveredper100k":5.95
+    },
+    "04/09/2020":{
+       "confirmed":"5972",
+       "confirmedper100k":31.85,
+       "day":"04/09/2020",
+       "deaths":"57",
+       "deathsper100k":0.3,
+       "recovered":"1274",
+       "recoveredper100k":6.79
+    },
+    "04/10/2020":{
+       "confirmed":"6501",
+       "confirmedper100k":34.67,
+       "day":"04/10/2020",
+       "deaths":"65",
+       "deathsper100k":0.35,
+       "recovered":"1571",
+       "recoveredper100k":8.38
+    },
+    "04/11/2020":{
+       "confirmed":"6927",
+       "confirmedper100k":36.94,
+       "day":"04/11/2020",
+       "deaths":"73",
+       "deathsper100k":0.39,
+       "recovered":"1864",
+       "recoveredper100k":9.94
+    },
+    "04/12/2020":{
+       "confirmed":"7213",
+       "confirmedper100k":38.47,
+       "day":"04/12/2020",
+       "deaths":"80",
+       "deathsper100k":0.43,
+       "recovered":"2059",
+       "recoveredper100k":10.98
+    },
+    "04/13/2020":{
+       "confirmed":"7525",
+       "confirmedper100k":40.13,
+       "day":"04/13/2020",
+       "deaths":"82",
+       "deathsper100k":0.44,
+       "recovered":"2367",
+       "recoveredper100k":12.62
+    }
+}
+
+
 
 window.onload = () => {
 
@@ -36,38 +709,39 @@ window.onload = () => {
 }
 
 const loadData = () => {
-
-    fetch('https://chile-coronapi1.p.rapidapi.com/v3/historical/nation', {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-host': 'chile-coronapi1.p.rapidapi.com',
-            'x-rapidapi-key': '94a928ddd1msh94a43eaf68e37cfp11c6aejsn31acec61285f',
-            'useQueryString': true,
-        },
+    const data = historical;
+    preparedList = Object.keys(data).map((day) => {
+        return { day: day, data: data[day] };
     })
-        .then(res => res.json())
-        .then(data => {
 
-            preparedList = Object.keys(data).map((day) => {
-                return { day: day, data: data[day] };
-            })
+    let formattedDay = '';
+    let counter = 0;
 
-            let formattedDay = '';
-            let counter = 0;
+    preparedList.forEach(element => {
 
-            preparedList.forEach(element => {
+        formattedDay = element.day[3] + element.day[4] + '/' + element.day[0] + element.day[1] + '/' + element.day.slice(6);
 
-                formattedDay = element.day[3] + element.day[4] + '/' + element.day[0] + element.day[1] + '/' + element.day.slice(6);
+        preparedList[counter].day = formattedDay;
+        counter++;
+    })
 
-                preparedList[counter].day = formattedDay;
-                counter++;
-            })
+    loadChart(preparedList);
 
-            loadChart(preparedList);
-        })
-        .catch(err => {
-            location.reload();
-        })
+    // fetch('https://chile-coronapi1.p.rapidapi.com/v3/historical/nation', {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-rapidapi-host': 'chile-coronapi1.p.rapidapi.com',
+    //         'x-rapidapi-key': '94a928ddd1msh94a43eaf68e37cfp11c6aejsn31acec61285f',
+    //         'useQueryString': true,
+    //     },
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+
+    //     })
+    //     .catch(err => {
+    //         location.reload();
+    //     })
 
 }
 
@@ -530,67 +1204,71 @@ function closeSlideMenu() {
 
 const loadSmallChartsData = () => {
 
-    //OBTENIENDO DATOS REGIONALES
-    fetch('https://chile-coronapi1.p.rapidapi.com/v3/historical/regions', {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-host': 'chile-coronapi1.p.rapidapi.com',
-            'x-rapidapi-key': '94a928ddd1msh94a43eaf68e37cfp11c6aejsn31acec61285f',
-            'useQueryString': true,
-        },
+    const data = regional
+
+    let preparedData = Object.keys(data).map((regionNumber) => {
+        contagiosList = Array.from(Array(10).keys()).map(() => 1000)
+        // contagiosList = Object.keys(data[regionNumber].regionData).map((x) => {
+
+        //     return data[regionNumber].regionData[x].confirmed;
+        // })
+
+        muertesList = Array.from(Array(10).keys()).map(() => 1000)
+        // muertesList = Object.keys(data[regionNumber].regionData).map((x) => {
+
+        //     let deaths = data[regionNumber].regionData[x].deaths;
+
+        //     if (deaths == undefined) {
+        //         return 0;
+        //     } else {
+        //         return deaths;
+        //     }
+        // })
+
+        return { region: data[regionNumber].region, data: { contagios: contagiosList, muertes: muertesList } };
     })
-        .then(res => res.json())
-        .then(data => {
 
-            preparedData = Object.keys(data).map((regionNumber) => {
+    //REASIGNANDO CONTAGIOS Y MUERTES DE BIOBÍO: SUMANDOLE LAS DE ÑUBLE
+    let biobioContagios = [];
+    let biobioMuertes = [];
 
-                contagiosList = Object.keys(data[regionNumber].regionData).map((x) => {
+    ctdDiasPasados = preparedData[0].data.contagios.length;
 
-                    return data[regionNumber].regionData[x].confirmed;
-                })
+    for (let i = 0; i < ctdDiasPasados; i++) {
 
-                muertesList = Object.keys(data[regionNumber].regionData).map((x) => {
+        let contagiosDelDia;
+        let muertesDelDia;
 
-                    let deaths = data[regionNumber].regionData[x].deaths;
+        contagiosDelDia = preparedData[7].data.contagios[i] + preparedData[15].data.contagios[i];
+        biobioContagios.push(contagiosDelDia);
 
-                    if (deaths == undefined) {
-                        return 0;
-                    } else {
-                        return deaths;
-                    }
-                })
+        muertesDelDia = preparedData[7].data.muertes[i] + preparedData[15].data.muertes[i];
+        biobioMuertes.push(muertesDelDia);
 
-                return { region: data[regionNumber].region, data: { contagios: contagiosList, muertes: muertesList } };
-            })
+    }
 
-            //REASIGNANDO CONTAGIOS Y MUERTES DE BIOBÍO: SUMANDOLE LAS DE ÑUBLE
-            let biobioContagios = [];
-            let biobioMuertes = [];
+    preparedData[7].data.contagios = biobioContagios;
+    preparedData[7].data.muertes = biobioMuertes;
 
-            ctdDiasPasados = preparedData[0].data.contagios.length;
+    dataRegionesGlobal = preparedData;
 
-            for (let i = 0; i < ctdDiasPasados; i++) {
+    //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
+    loadMap();
+    paintSmallCharts();
 
-                let contagiosDelDia;
-                let muertesDelDia;
+    //OBTENIENDO DATOS REGIONALES
+    // fetch('https://chile-coronapi1.p.rapidapi.com/v3/historical/regions', {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-rapidapi-host': 'chile-coronapi1.p.rapidapi.com',
+    //         'x-rapidapi-key': '94a928ddd1msh94a43eaf68e37cfp11c6aejsn31acec61285f',
+    //         'useQueryString': true,
+    //     },
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
 
-                contagiosDelDia = preparedData[7].data.contagios[i] + preparedData[15].data.contagios[i];
-                biobioContagios.push(contagiosDelDia);
-
-                muertesDelDia = preparedData[7].data.muertes[i] + preparedData[15].data.muertes[i];
-                biobioMuertes.push(muertesDelDia);
-
-            }
-
-            preparedData[7].data.contagios = biobioContagios;
-            preparedData[7].data.muertes = biobioMuertes;
-
-            dataRegionesGlobal = preparedData;
-
-            //DATOS LISTOS; CARGANDO MAPA Y CHARTS CHICOS
-            loadMap();
-            paintSmallCharts();
-        })
+    //     })
 }
 
 const paintSmallCharts = () => {
