@@ -1,0 +1,1 @@
+https://covid-chile-app.vercel.app/
